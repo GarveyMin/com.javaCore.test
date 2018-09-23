@@ -24,6 +24,10 @@ import javax.swing.filechooser.FileView;
 
 class FileChooserFrame extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel label;
 	private JFileChooser chooser;
 	public static final int DEFAULT_WIDTH=300;
@@ -96,6 +100,11 @@ class FileIconView extends FileView{
 }
 class ImagePreviewer extends JLabel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ImagePreviewer(JFileChooser chooser) {
 		setPreferredSize(new Dimension(100, 100));
 		setBorder(BorderFactory.createEtchedBorder());

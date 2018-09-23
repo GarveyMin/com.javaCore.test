@@ -17,13 +17,17 @@ import javax.swing.KeyStroke;
 /**
  * 
  * @author Garvey Min
- * @date 2018Äê7ÔÂ2ÈÕÉÏÎç10:47:31
+ * @date 2018ï¿½ï¿½7ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10:47:31
  * @version 4.7.3a
  */
 /*
  * A frame with a panel that demonstrates color change actions
  */
 class ActionFrame extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final int DEFAULT_WIDTH = 300;
 	public static final int DEFAULT_HEIGHT = 200;
 	private JPanel buttonPanel;
@@ -55,6 +59,11 @@ class ActionFrame extends JFrame {
 	}
 
 	public class ColorAction extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		/**
 		 * Constructs a color actions
 		 * 
