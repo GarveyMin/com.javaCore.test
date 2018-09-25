@@ -1,7 +1,11 @@
 package com.javaCore.test;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Bank {
 	private final double[] accounts;
+	
 	/**
 	 * Constructs the bank
 	 * @param n the number of accounts
@@ -20,6 +24,8 @@ public class Bank {
 	 * @param amount the amount to transfer
 	 */
 	public void transfer(int from,int to,double amount) {
+		
+		
 		if(accounts[from]<amount) return;
 		System.out.print(Thread.currentThread());
 		accounts[from]-=amount;

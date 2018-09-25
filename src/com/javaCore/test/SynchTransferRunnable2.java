@@ -1,13 +1,17 @@
 package com.javaCore.test;
 
-public class TransferRunnable implements Runnable{
-	private Bank bank;
+public class SynchTransferRunnable2 implements Runnable{
+	private SynchBank2 bank;
 	private int fromAccount;
 	private double maxAmount;
 	private int DELAY=10;
-	
-	public TransferRunnable(Bank b,int from,double max) {
-		// TODO Auto-generated constructor stub
+	/**
+	 * Constructs a Synch transfer runnable2.
+	 * @param b the bank between whose account money is transferred
+	 * @param from the account to transfer money from
+	 * @param max the maximum amount of money in each transfer
+	 */
+	public SynchTransferRunnable2(SynchBank2 b,int from,double max) {
 		bank=b;
 		fromAccount=from;
 		maxAmount=max;
@@ -17,7 +21,7 @@ public class TransferRunnable implements Runnable{
 		// TODO Auto-generated method stub
 		try {
 			while(true) {
-				int toAccount=(int) (bank.size()*Math.random());
+				int toAccount=(int)(bank.size()*Math.random());
 				double amount=maxAmount*Math.random();
 				bank.transfer(fromAccount, toAccount, amount);
 				Thread.sleep((int)(DELAY*Math.random()));
