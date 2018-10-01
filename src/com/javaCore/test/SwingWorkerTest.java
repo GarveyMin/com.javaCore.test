@@ -95,6 +95,7 @@ class SwingWorkerFrame extends JFrame{
 			// TODO Auto-generated constructor stub
 			this.file=file;
 		}
+		// the following method executes in the worker thread; it doesn't touch Swing components
 		@Override
 		public StringBuilder doInBackground() throws Exception {
 			// TODO Auto-generated method stub
@@ -109,10 +110,12 @@ class SwingWorkerFrame extends JFrame{
 				data.number=lineNumber;
 				data.line=line;
 				publish(data);
-				Thread.sleep(1);
+				Thread.sleep(1);// to test cancellation; no need to do this in your programs
 			}
 			return text;
 		}
+		// the following methods execute in the event dispatch thread
+
 		@Override
 		public void process(List<ProgressData> data) {
 			if(isCancelled()) return;
