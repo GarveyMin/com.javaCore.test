@@ -21,7 +21,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
-
+/*
+ * A frame with a text area to show the contents of a file inside a ZIP archive, a combo box to
+ * select different files in the archive, and a menu to load a new archive.
+ */
 class ZipTestFrame extends JFrame{
 	public static final int DEFAULT_WIDTH=400;
 	public static final int DEFAULT_HEIGHT=300;
@@ -33,7 +36,7 @@ class ZipTestFrame extends JFrame{
 	public ZipTestFrame() {
 		setTitle("ZipTest");
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-		
+		// add the menu and the Open and Exit menu items
 		JMenuBar meunBar=new JMenuBar();
 		JMenu menu=new JMenu("File");
 		JMenuItem openItem=new JMenuItem("Open");
@@ -66,7 +69,7 @@ class ZipTestFrame extends JFrame{
 		});
 		meunBar.add(menu);
 		setJMenuBar(meunBar);
-		
+		// add the text area and combo box
 		fileText=new JTextArea();
 		fileCome=new JComboBox();
 		fileCome.addActionListener(new ActionListener() {
@@ -80,6 +83,9 @@ class ZipTestFrame extends JFrame{
 		add(fileCome,BorderLayout.SOUTH);
 		add(new JScrollPane(fileText),BorderLayout.CENTER);
 	}
+	/*
+	 * Scans the contents of the ZIP archive and populates the combo box.
+	 */
 	public void scanZipFile() {
 		new SwingWorker<Void, String>() {
 
@@ -102,6 +108,10 @@ class ZipTestFrame extends JFrame{
 			}
 		}.execute();
 	}
+	/**
+	 * Loads a file from the ZIP archive into the text area
+	 * @param name the name of the file in the archive
+	 */
 	public void loadZipFile(final String name) {
 		fileCome.setEditable(false);
 		fileText.setText("");
@@ -113,8 +123,10 @@ class ZipTestFrame extends JFrame{
 				try {
 					ZipInputStream zin=new ZipInputStream(new FileInputStream(zipname));
 					ZipEntry entry;
+					// find entry with matching name in archive
 					while((entry=zin.getNextEntry())!=null) {
 						if(entry.getName().equals(name)) {
+							// read entry into text area
 							Scanner in=new Scanner(zin);
 							while(in.hasNextLine()) {
 								fileText.append(in.nextLine());
